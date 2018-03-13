@@ -54,7 +54,7 @@ class MetasploitModule < Msf::Exploit::Remote
       'Privileged'  => false,
       #Correct Date Format: "M D Y"
       #Month format: Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
-      'DisclosureDate'  => 'Mar 10, 2018',
+      'DisclosureDate'  => 'Feb 14, 2018',
       'DefaultTarget'  => 0))
 
     register_options([Opt::RPORT(9999)])# , self.class was removed
